@@ -3,28 +3,28 @@ import scipy.integrate as spi
 import matplotlib.pyplot as plt
 
 
-#
+# Визначення функціі
 def f(x):
     return 3 * x ** 3 + 2 * x ** 2 + 5 * x + 10
 
-#
+# Межі інтегрування
 a, b = 0, 2
 
-#
+# Обчислення інтеграла методом Монте-Карло
 num_samples = 1000
 x_random = np.random.uniform(a, b, num_samples)
 y_random = np.random.uniform(a, f(b), num_samples)
 
-#
+# Кількість точок під кривою
 under_curve = np.sum(y_random < f(x_random))
 
-#
+# Площа під кривою
 area_under_curve = (b - a) * f(b) * under_curve / num_samples
 
-#
+# Обчислення інтегралу за допомогою функціі quad
 result, error = spi.quad(f, a, b)
 
-print(area_under_curve, result)
+print('Площа обчислена методом Монте-Карло', area_under_curve, 'Площа обчислена функцією quad', result)
 
 # Створення діапазону значень для x
 x = np.linspace(-0.5, 2.5, 400)
